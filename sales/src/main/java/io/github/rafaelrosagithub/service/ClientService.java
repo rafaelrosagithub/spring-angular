@@ -10,8 +10,7 @@ public class ClientService {
 
     private ClientRepository repository;
 
-    @Autowired
-    public void setRepository(ClientRepository repository) {
+    public ClientService(ClientRepository repository) {
         this.repository = repository;
     }
 
