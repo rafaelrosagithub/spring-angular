@@ -16,18 +16,9 @@ public class SalesApplication {
     @Qualifier("applicationName")
     private String applicationName;
 
-    @Autowired
-    @Qualifier("anotherConfiguration")
-    private String applicationName2;
-
     @GetMapping("/hello")
     public String helloWorld() {
         return applicationName;
-    }
-
-    @GetMapping("/hello2")
-    public String helloWorld2() {
-        return applicationName2;
     }
 
     public static void main(String[] args) {

@@ -11,9 +11,4 @@ public class MyConfiguration {
         return "Sales System";
     }
 
-    @Bean(name = "anotherConfiguration")
-    public String applicationName2() {
-        return "Sales System 2 teste";
-    }
-
 }
