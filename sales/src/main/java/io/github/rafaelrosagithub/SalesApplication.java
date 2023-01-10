@@ -16,9 +16,12 @@ public class SalesApplication {
     @Value("${application.name}")
     private String applicationName;
 
+    @Qualifier("${profileDev}")
+    private String profile;
+
     @GetMapping("/hello")
     public String helloWorld() {
-        return applicationName;
+        return applicationName + ", Profile: " + profile;
     }
 
     public static void main(String[] args) {
