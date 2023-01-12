@@ -4,10 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @Development
 public class MyConfiguration {
-
     @Bean(name = "profileDev")
     public String profile() {
         return "Development";
