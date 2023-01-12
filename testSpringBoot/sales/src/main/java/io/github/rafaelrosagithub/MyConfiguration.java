@@ -17,5 +17,4 @@ public class MyConfiguration {
             System.out.println("Running the development environment");
         };
     }
-
 }
