@@ -1,11 +1,15 @@
 package org.example.customers.model.entity;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
+@Data
 public class Client {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -16,3 +20,4 @@ public class Client {
     @Column
     private LocalDate dateRegister;
 }
+
