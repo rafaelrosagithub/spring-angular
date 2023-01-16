@@ -1,14 +1,15 @@
 package org.example.customers.model.entity;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,5 +20,10 @@ public class Client {
     private String cpf;
     @Column(name = "date_register")
     private LocalDate dateRegister;
+
+    @PrePersist
+    public void prePersist() {
+        setDateRegister(LocalDate.now());
+    }
 }
 
