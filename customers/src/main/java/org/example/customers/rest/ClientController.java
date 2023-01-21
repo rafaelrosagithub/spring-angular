@@ -39,7 +39,7 @@ public class ClientController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Integer id, @RequestBody Client updatedClient) {
+    public void update(@PathVariable Integer id, @RequestBody @Valid Client updatedClient) {
         repository.findById(id).map(client -> {
             client.setName(updatedClient.getName());
             client.setCpf(updatedClient.getCpf());
