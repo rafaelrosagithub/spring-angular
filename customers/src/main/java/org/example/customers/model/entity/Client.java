@@ -22,11 +22,11 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false, length = 150)
-    @NotEmpty()
+    @NotEmpty(message = "{field.name.required}")
     private String name;
     @Column(nullable = false, length = 11)
-    @NotNull
-    @CPF
+    @NotNull(message = "{field.cpf.required}")
+    @CPF(message = "{field.cpf.invalid}")
     private String cpf;
     @Column(name = "date_register", updatable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
