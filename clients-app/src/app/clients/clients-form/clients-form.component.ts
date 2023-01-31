@@ -10,10 +10,18 @@ import { Client } from '../client';
 export class ClientsFormComponent implements OnInit {
 
   client: Client;
+  name: string = 'Cicrano';
 
-  constructor() { }
+  constructor() {
+    this.client = new Client();
+    this.client.name = "Rafael";
+  }
 
   ngOnInit(): void {
+  }
+
+  click() {
+    console.log("click()");
   }
 
 }
