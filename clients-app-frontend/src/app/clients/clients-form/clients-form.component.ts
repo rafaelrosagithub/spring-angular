@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Client } from '../client';
+import { ClientsService } from '../../clients.service';
 
 @Component({
   selector: 'app-clients-form',
@@ -11,8 +12,8 @@ export class ClientsFormComponent implements OnInit {
 
   client: Client;
 
-  constructor() {
-    this.client = new Client();
+  constructor(private clientService: ClientsService) {
+    this.client = clientService.getClient();
   }
 
   ngOnInit(): void {
