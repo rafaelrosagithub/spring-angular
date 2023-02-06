@@ -5,16 +5,26 @@
 <div class="container">
   <form #clientForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success">
+          Client successfully saved/updated
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-md-6">
         <div class="form-group">
           <label>ID</label>
-          <input type="text" class="form-control" [ngModel]="client.id" disabled="true" name="id"/>
+          <input type="text" class="form-control" [ngModel]="client.id" disabled="true" name="id" />
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <label>Registration date</label>
-          <input type="text" class="form-control" [ngModel]="client.dateRegister" disabled="true" name="dateRegister"/>
+          <input type="text" class="form-control" [ngModel]="client.dateRegister" disabled="true" name="dateRegister" />
         </div>
       </div>
     </div>
@@ -34,7 +44,7 @@
     </div>
     <div class="row">
       <div class="col-md-2">
-        <button type="submit" class="btn btn-success" >
+        <button type="submit" class="btn btn-success">
           <i class="fa fa-save"></i> Save
         </button>
       </div>
