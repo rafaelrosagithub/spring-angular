@@ -21,11 +21,13 @@ export class ClientsFormComponent implements OnInit {
 
   onSubmit() {
     console.log('onSubmit()');
-    this.clientService.save(this.client).subscribe((res) => {
-      console.log('subscribe()');
-      console.log('res: ', res);
+    this.clientService.save(this.client).subscribe((response) => {
+      console.log('res: ', response);
       this.success = true;
-      console.log('end subscribe()');
+    }, errorResponse => {
+      this.success = false;
+      this.errors = errorResponse.error.errors;
+      console.log("Error: ", errorResponse.error.errors);
     });
     console.log('end onSubmit()');
   }
