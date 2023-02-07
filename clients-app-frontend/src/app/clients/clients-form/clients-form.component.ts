@@ -20,15 +20,17 @@ export class ClientsFormComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    console.log('onSubmit()');
-    this.clientService.save(this.client).subscribe((response) => {
-      console.log('res: ', response);
-      this.success = true;
-    }, errorResponse => {
-      this.success = false;
-      this.errors = errorResponse.error.errors;
-      console.log("Error: ", errorResponse.error.errors);
-    });
-    console.log('end onSubmit()');
+    this.clientService.save(this.client).subscribe(
+      (response) => {
+        this.success = true;
+        this.errors = [];
+        this.client = response;
+        console.log("resonse: ", response);
+      },
+      (errorResponse) => {
+        this.success = false;
+        this.errors = errorResponse.error.errors;
+      }
+    );
   }
 }
