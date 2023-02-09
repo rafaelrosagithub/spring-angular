@@ -9,7 +9,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
-
 @RestController
 @RequestMapping("/api/clients")
 @CrossOrigin("http://localhost:4200")
@@ -21,6 +20,7 @@ public class ClientController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public Client save(@RequestBody @Valid Client client) {
+        System.out.println("teste");
         return repository.save(client);
     }
 
@@ -32,6 +32,7 @@ public class ClientController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id) {
+
         repository.findById(id).map(client -> {
             repository.delete(client);
             return Void.TYPE;
