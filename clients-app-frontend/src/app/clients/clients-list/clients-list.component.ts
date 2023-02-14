@@ -12,6 +12,8 @@ export class ClientsListComponent implements OnInit {
 
   clients: Client[] = [];
   selectedClient: Client;
+  successMessage: string;
+  errorMessage: string;
 
   constructor(private service: ClientsService, private router: Router) { }
 
@@ -25,6 +27,18 @@ export class ClientsListComponent implements OnInit {
 
   prepareDeletion(client: Client) {
     this.selectedClient = client;
+  }
+  
+  deleteClient() {
+    console.log("deleteClient()", this.selectedClient)
+    this.service.delete(this.selectedClient).subscribe(response => {
+      this.errorMessage = null;
+      this.successMessage = "Client deleted successfully!";
+      this.ngOnInit();
+    }, responseError => {
+      this.successMessage = null;
+      this.errorMessage = "An error ocurred while deleting the client.";
+    })
   }
 
 }

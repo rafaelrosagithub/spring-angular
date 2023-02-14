@@ -4,6 +4,16 @@
 </ol>
 <div class="container">
     <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="successMessage">
+                {{ successMessage }}
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                {{ errorMessage }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-2">
             <button class="btn btn-warning" (click)="newRegister()">
                 <i class="fa fa-plus"></i> New
@@ -54,7 +64,7 @@
                     Confirm deletion of customer: {{selectedClient.name}}?
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-success">Confirm</button>
+                    <button class="btn btn-success" (click)="deleteClient()" data-dismiss="modal">Confirm</button>
                     <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
