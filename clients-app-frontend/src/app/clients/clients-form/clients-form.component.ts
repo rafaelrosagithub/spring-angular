@@ -36,18 +36,28 @@ export class ClientsFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.clientService.save(this.client).subscribe(
-      (response) => {
+    if (this.id) {
+      this.clientService.update(this.client).subscribe(response => {
         this.success = true;
-        this.errors = [];
-        this.client = response;
-        console.log("resonse: ", response);
-      },
-      (errorResponse) => {
+        this.errors = null;
+      }, responseError => {
         this.success = false;
-        this.errors = errorResponse.error.errors;
-      }
-    );
+        this.errors = ['Error when updating the client.'];
+      });
+    } else {
+      this.clientService.save(this.client).subscribe(
+        (response) => {
+          this.success = true;
+          this.errors = null;
+          this.client = response;
+          console.log("resonse: ", response);
+        },
+        (errorResponse) => {
+          this.success = false;
+          this.errors = errorResponse.error.errors;
+        }
+      );
+    }
   }
 
   backToListing() {

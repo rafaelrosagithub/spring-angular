@@ -13,6 +13,11 @@ export class ClientsService {
     console.log('save()');
     return this.http.post<Client>('http://localhost:8080/api/clients', client);
   }
+  
+  update(client: Client): Observable<any> {
+    console.log('update()');
+    return this.http.put<Client>(`http://localhost:8080/api/clients/${client.id}`, client);
+  }
 
   getClients(): Observable<Client[]> {
     return this.http.get<Client[]>("http://localhost:8080/api/clients");
@@ -21,5 +26,6 @@ export class ClientsService {
   getClientById(id: number): Observable<Client> {
     return this.http.get<any>(`http://localhost:8080/api/clients/${id}`);
   }
+
 
 }
