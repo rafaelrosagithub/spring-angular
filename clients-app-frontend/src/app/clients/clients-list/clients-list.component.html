@@ -33,10 +33,31 @@
                             <button class="btn btn-primary" routerLink="/clients-form/{{client.id}}">
                                 <i class="fa fa-edit"></i>
                             </button>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"
+                                (click)="prepareDeletion(client)">
+                                <i class="fa fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div id="modalDelete" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Confirmation</h4>
+                </div>
+                <div class="modal-body" *ngIf="selectedClient">
+                    Confirm deletion of customer: {{selectedClient.name}}?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success">Confirm</button>
+                    <button class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

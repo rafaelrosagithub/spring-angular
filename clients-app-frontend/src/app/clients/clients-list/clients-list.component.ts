@@ -11,6 +11,7 @@ import { Router } from "@angular/router";
 export class ClientsListComponent implements OnInit {
 
   clients: Client[] = [];
+  selectedClient: Client;
 
   constructor(private service: ClientsService, private router: Router) { }
 
@@ -20,6 +21,10 @@ export class ClientsListComponent implements OnInit {
 
   newRegister() {
     this.router.navigate(['/clients-form']);
+  }
+
+  prepareDeletion(client: Client) {
+    this.selectedClient = client;
   }
 
 }
