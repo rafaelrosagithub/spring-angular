@@ -18,5 +18,8 @@ export class ClientsService {
     return this.http.get<Client[]>("http://localhost:8080/api/clients");
   }
 
- 
+  getClientById(id: number): Observable<Client> {
+    return this.http.get<any>(`http://localhost:8080/api/clients/${id}`);
+  }
+
 }
