@@ -1,13 +1,13 @@
 <h1 class="mt-4">Service Provided</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active" New></li>
+    <li class="breadcrumb-item active">New</li>
 </ol>
 <div class="container">
     <form #form="ngForm" (submit)="onSubmit()">
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-success" role="alert" *ngIf="success">
-                    Service Provided saved successfully!
+                    Service Provided savedsuccessfully!
                 </div>
                 <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
                     {{ error }}

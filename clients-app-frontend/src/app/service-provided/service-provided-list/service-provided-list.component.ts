@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiceProvidedListComponent implements OnInit {
 
-  constructor() { }
+  name: string;
+  month: number;
+  months: number[];
+
+  constructor() {
+    this.months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+   }
 
   ngOnInit(): void {
+  }
+
+  search() {
+    console.log("search()")
+    console.log("Name:", this.name + ", Month:", this.month)
   }
 
 }
