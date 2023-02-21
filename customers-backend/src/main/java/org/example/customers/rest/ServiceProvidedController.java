@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -26,7 +27,7 @@ public class ServiceProvidedController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ServiceProvided save(@RequestBody SeviceProvidedDTO seviceProvidedDTO) {
+    public ServiceProvided save(@RequestBody @Valid SeviceProvidedDTO seviceProvidedDTO) {
         LocalDate date = LocalDate.parse(seviceProvidedDTO.getDate(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Integer idClient = seviceProvidedDTO.getIdClient();
 
