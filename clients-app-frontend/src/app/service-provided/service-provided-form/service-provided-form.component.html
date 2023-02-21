@@ -8,13 +8,44 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Client: </label>
-                    <select class="form-control">
+                    <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="service.idClient">
                         <option value="">Select...</option>
                         <option *ngFor="let client of clients" [ngValue]="client.id">
                             {{client.name}}
                         </option>
                     </select>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Description</label>
+                    <input class="form-control" [(ngModel)]="service.description" type="text" name="date"
+                        id="inputDescription">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input class="form-control" [(ngModel)]="service.date" type="text" name="date" id="inputDate">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Price</label>
+                    <input class="form-control" [(ngModel)]="service.price" type="text" name="price" id="inputPrice">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success">
+                    <i class="fa fa-save"></i>
+                    Save
+                </button>
             </div>
         </div>
     </form>
