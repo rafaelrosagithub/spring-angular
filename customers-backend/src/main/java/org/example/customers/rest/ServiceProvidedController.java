@@ -18,7 +18,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/services-provided")
 @RequiredArgsConstructor
-@CrossOrigin("http://localhost:4200")
 public class ServiceProvidedController {
 
     private final ClientRepository clientRepository;
