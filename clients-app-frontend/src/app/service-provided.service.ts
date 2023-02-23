@@ -21,7 +21,7 @@ export class ServiceProvidedService {
   search(name: string, month: number): Observable<ServiceProvidedSearch[]> {
     const httpParams = new HttpParams()
       .set("name", name)
-      .set("month", month.toString());
+      .set("month", month ? month.toString() : "");
     const url = this.apiURL + "?" + httpParams.toString();
     return this.http.get<any>(url);
   }
