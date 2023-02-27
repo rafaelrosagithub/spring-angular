@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,23 @@ export class LoginComponent {
   username: string;
   password: string;
   loginError: boolean;
+  signingUp: boolean;
 
-  constructor() { }
+  constructor(
+    private router: Router) { }
 
   onSubmit() {
-    console.log('Data: ', this.username + ', Pass: ', this.password)
+    this.router.navigate(['/home']);
+  }
+
+  prepareToRegister(event) {
+    event.preventDefault();
+    this.signingUp = true;
+  }
+
+  unsubscribe() {
+    console.log("unsubscribe()")
+    this.signingUp = false;
   }
 
 }
