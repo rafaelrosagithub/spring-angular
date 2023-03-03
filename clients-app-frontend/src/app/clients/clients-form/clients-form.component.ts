@@ -64,6 +64,6 @@ export class ClientsFormComponent implements OnInit {
   }
 
   backToListing() {
-    this.router.navigate(['/clients-list'])
+    this.router.navigate(['/clients/list'])
   }
 }
