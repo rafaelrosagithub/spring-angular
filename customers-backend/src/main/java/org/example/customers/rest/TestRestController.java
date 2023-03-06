@@ -23,7 +23,7 @@ public class TestRestController {
         String localPath = "D:/FTP";
         String fileName = "filenovo.txt";
         String sftpHost = "192.168.0.110";
-        String sftpPath = "/TESTSFTP";
+        String sftpPath = "/TESTE";
         String sftpPort = "22";
         String sftpUser = "teste";
         String sftpPassword = "teste";
@@ -50,22 +50,25 @@ public class TestRestController {
             channelSftp.put(localPath + "/" + fileName, sftpPath);
             System.out.println("Copied file to Host SFTP");
 
-            System.out.println("Copying file from Host SFTP to Local");
-            channelSftp.get(sftpPath + "/" + fileName, localPath);
-            System.out.println("Copied file from Host SFTP to Local");
+//            System.out.println("Copying file from Host SFTP to Local");
+//            channelSftp.get(sftpPath + "/" + fileName, localPath);
+//            System.out.println("Copied file from Host SFTP to Local");
 
             // Changing directory name
-            String oldDirName = sftpPath + "/EMAIL";
-            String newDirName = oldDirName + "_done";
-            channelSftp.rename(oldDirName, newDirName);
+//            String oldDirName = sftpPath + "/EMAIL";
+//            String newDirName = oldDirName + "_done";
+//            channelSftp.rename(oldDirName, newDirName);
 
             // Changing the file name
             String oldFileName = sftpPath + "/" + fileName;
             String newNameFile;
+            String extensionFile;
             int lastIndex = oldFileName.lastIndexOf('.');
             if (lastIndex != -1) {
                 newNameFile = oldFileName.substring(0, lastIndex);
-                String newFileName = newNameFile + "_done" + ".txt";
+                extensionFile = oldFileName.substring(lastIndex);
+
+                String newFileName = newNameFile + "_DONE" + extensionFile;
                 channelSftp.rename(oldFileName, newFileName);
             }
 
@@ -74,8 +77,8 @@ public class TestRestController {
             channelSftp.rm(sftpPath + file);
 
             // Remove directory
-            String directory = "EMAIL";
-            channelSftp.rm(sftpPath + directory);
+//            String directory = "EMAIL";
+//            channelSftp.rm(sftpPath + directory);
 
             channelSftp.disconnect();
             session.disconnect();
