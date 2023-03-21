@@ -1,7 +1,7 @@
 package org.example.customers.rest;
 
 import lombok.RequiredArgsConstructor;
-import org.example.customers.model.entity.User;
+import org.example.customers.model.entity.SystemUser;
 import org.example.customers.model.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@RequestBody @Valid User user) {
+    public void save(@RequestBody @Valid SystemUser user) {
         userRepository.save(user);
     }
 }
