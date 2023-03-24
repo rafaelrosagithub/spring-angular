@@ -13,6 +13,7 @@ import { ServiceProvidedModule } from './service-provided/service-provided.modul
 import { ServiceProvidedService } from './service-provided.service';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { LayoutComponent } from './layout/layout.component';
   ],
   providers: [
     ClientsService,
-    ServiceProvidedService
+    ServiceProvidedService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
