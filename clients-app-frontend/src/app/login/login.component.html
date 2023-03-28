@@ -11,6 +11,9 @@
                                 </h3>
                             </div>
                             <div class="card-body">
+                                <div class="alert alert-success" *ngIf="successMessage">
+                                    {{ successMessage }}
+                                </div>
                                 <div class="alert alert-danger" *ngIf="loginError">
                                     Incorrect Login or Password.
                                 </div>
@@ -28,6 +31,7 @@
                                     <div class="form-group align-itens-center justify-content-between mt-4 mb-0">
                                         <button type="submit" class="btn btn-primary" *ngIf="!signingUp">Send</button>
                                         <button type="button" class="btn btn-success"
+                                            (click)="registerUser()"
                                             *ngIf="signingUp">Register</button>
                                         <button type="button" class="btn btn-danger ml-1" *ngIf="signingUp"
                                             (click)="unsubscribe()">Cancel</button>
