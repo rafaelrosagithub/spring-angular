@@ -2,9 +2,12 @@ package org.example.customers.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.example.customers.model.entity.SystemUser;
-import org.example.customers.model.repository.UserRepository;
+import org.example.customers.rest.exception.RegisteredUserException;
+import org.example.customers.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
@@ -13,11 +16,16 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void save(@RequestBody @Valid SystemUser user) {
-        userRepository.save(user);
+        try {
+            userService.save(user);
+        } catch (RegisteredUserException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 }

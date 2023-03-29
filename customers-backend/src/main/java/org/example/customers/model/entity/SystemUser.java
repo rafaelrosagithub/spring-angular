@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Data
@@ -15,8 +16,10 @@ public class SystemUser {
     private Integer id;
 
     @Column(unique = true)
+    @NotEmpty(message = "{field.login.required}")
     private String username;
 
     @Column
+    @NotEmpty(message = "{field.password.required}")
     private String password;
 }
