@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.example.customers.model.entity.SystemUser;
 import org.example.customers.rest.exception.RegisteredUserException;
 import org.example.customers.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,8 +15,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
