@@ -1,54 +1,56 @@
-<div id="layoutAuthentication">
-    <div id="layoutAuthentication_content">
-        <main>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-5">
-                        <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header">
-                                <h3 class="text-center font-weignt-light my-4">
-                                    {{ signingUp ? 'New user registration' : 'Enter'}}
-                                </h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="alert alert-success" *ngIf="successMessage">
-                                    {{ successMessage }}
+<div class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header">
+                                    <h3 class="text-center font-weignt-light my-4">
+                                        {{ signingUp ? 'New user registration' : 'Enter'}}
+                                    </h3>
                                 </div>
-                                <div class="alert alert-danger" *ngFor="let error of errors">
-                                    {{ error }}
+                                <div class="card-body">
+                                    <div class="alert alert-success" *ngIf="successMessage">
+                                        {{ successMessage }}
+                                    </div>
+                                    <div class="alert alert-danger" *ngFor="let error of errors">
+                                        {{ error }}
+                                    </div>
+                                    <form #loginForm="ngForm" (submit)="onSubmit()">
+                                        <div class="form-group">
+                                            <label class="small mb-1">Login</label>
+                                            <input type="text" name="username" [(ngModel)]="username" autocomplete="off"
+                                                class="form-control py-4" placeholder="Enter you login" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="small mb-1">Password</label>
+                                            <input type="password" name="password" [(ngModel)]="password"
+                                                class="form-control py-4" placeholder="Enter you password" />
+                                        </div>
+                                        <div class="form-group align-itens-center justify-content-between mt-4 mb-0">
+                                            <button type="submit" class="btn btn-primary" *ngIf="!signingUp">Send</button>
+                                            <button type="button" class="btn btn-success"
+                                                (click)="registerUser()"
+                                                *ngIf="signingUp">Register</button>
+                                            <button type="button" class="btn btn-danger ml-1" *ngIf="signingUp"
+                                                (click)="unsubscribe()">Cancel</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <form #loginForm="ngForm" (submit)="onSubmit()">
-                                    <div class="form-group">
-                                        <label class="small mb-1">Login</label>
-                                        <input type="text" name="username" [(ngModel)]="username"
-                                            class="form-control py-4" placeholder="Enter you login" />
+                                <div class="card-footer text-center">
+                                    <div class="small">
+                                        <a href="#" (click)="prepareToRegister($event)">
+                                            Don't have a user? Register!
+                                        </a>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="small mb-1">Password</label>
-                                        <input type="password" name="password" [(ngModel)]="password"
-                                            class="form-control py-4" placeholder="Enter you password" />
-                                    </div>
-                                    <div class="form-group align-itens-center justify-content-between mt-4 mb-0">
-                                        <button type="submit" class="btn btn-primary" *ngIf="!signingUp">Send</button>
-                                        <button type="button" class="btn btn-success"
-                                            (click)="registerUser()"
-                                            *ngIf="signingUp">Register</button>
-                                        <button type="button" class="btn btn-danger ml-1" *ngIf="signingUp"
-                                            (click)="unsubscribe()">Cancel</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="card-footer text-center">
-                                <div class="small">
-                                    <a href="#" (click)="prepareToRegister($event)">
-                                        Don't have a user? Register!
-                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
 </div>

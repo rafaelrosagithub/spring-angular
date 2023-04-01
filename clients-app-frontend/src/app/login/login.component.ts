@@ -43,6 +43,8 @@ export class LoginComponent {
       .save(user)
       .subscribe(response => {
         this.successMessage = "Successful registration! Log in."
+        this.username = '';
+        this.password = '';
         this.errors = null;
       }, errorResponse => {
         this.successMessage = null;
