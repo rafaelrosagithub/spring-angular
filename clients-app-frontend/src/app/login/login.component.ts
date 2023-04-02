@@ -21,7 +21,13 @@ export class LoginComponent {
     private authService: AuthService) { }
 
   onSubmit() {
-    this.router.navigate(['/home']);
+    this.authService
+      .tryLogin(this.username, this.password)
+      .subscribe(response => {
+        this.router.navigate(['/home']);
+      }, errorResponse => {
+        this.errors = ['Incorrect username or password.']
+      })
   }
 
   prepareToRegister(event) {
