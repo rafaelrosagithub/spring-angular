@@ -14,13 +14,8 @@ export class ClientsService {
   constructor(private http: HttpClient) { }
 
   save(client: Client): Observable<Client> {
-    const accessTokenString = localStorage.getItem('access_token');
-    const accessTokenJSON = JSON.parse(accessTokenString);
-    const headers = {
-      'Authorization': 'Bearer ' + accessTokenJSON.access_token
-    }
     console.log('save()');
-    return this.http.post<Client>(this.apiURL, client, { headers });
+    return this.http.post<Client>(this.apiURL, client);
   }
 
   update(client: Client): Observable<any> {
@@ -29,12 +24,7 @@ export class ClientsService {
   }
 
   getClients(): Observable<Client[]> {
-    const accessTokenString = localStorage.getItem('access_token');
-    const accessTokenJSON = JSON.parse(accessTokenString);
-    const headers = {
-      'Authorization': 'Bearer ' + accessTokenJSON.access_token
-    }
-    return this.http.get<Client[]>(this.apiURL, { headers });
+    return this.http.get<Client[]>(this.apiURL);
   }
 
   getClientById(id: number): Observable<Client> {
