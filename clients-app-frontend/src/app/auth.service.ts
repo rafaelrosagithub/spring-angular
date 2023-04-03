@@ -32,6 +32,6 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded' 
     }
 
-    return this.http.post(this.tokenURL, params.toString, { headers });
+    return this.http.post(this.tokenURL, params.toString(), { headers });
   }
 }
