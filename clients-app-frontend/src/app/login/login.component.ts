@@ -24,6 +24,9 @@ export class LoginComponent {
     this.authService
       .tryLogin(this.username, this.password)
       .subscribe(response => {
+        const accessToken = JSON.stringify(response);
+        localStorage.setItem("access_token", accessToken)
+        console.log("accessToken: ", accessToken)
         this.router.navigate(['/home']);
       }, errorResponse => {
         this.errors = ['Incorrect username or password.']

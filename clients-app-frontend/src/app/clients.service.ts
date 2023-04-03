@@ -11,20 +11,30 @@ export class ClientsService {
 
   apiURL: string = environment.apiURLBase + "/api/clients";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   save(client: Client): Observable<Client> {
+    const accessTokenString = localStorage.getItem('access_token');
+    const accessTokenJSON = JSON.parse(accessTokenString);
+    const headers = {
+      'Authorization': 'Bearer ' + accessTokenJSON.access_token
+    }
     console.log('save()');
-    return this.http.post<Client>(this.apiURL, client);
+    return this.http.post<Client>(this.apiURL, client, { headers });
   }
-  
+
   update(client: Client): Observable<any> {
     console.log('update()');
     return this.http.put<Client>(`${this.apiURL}/${client.id}`, client);
   }
 
   getClients(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.apiURL);
+    const accessTokenString = localStorage.getItem('access_token');
+    const accessTokenJSON = JSON.parse(accessTokenString);
+    const headers = {
+      'Authorization': 'Bearer ' + accessTokenJSON.access_token
+    }
+    return this.http.get<Client[]>(this.apiURL, { headers });
   }
 
   getClientById(id: number): Observable<Client> {
