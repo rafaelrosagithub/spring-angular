@@ -5,7 +5,7 @@ import { User } from './login/user';
 
 import { environment } from '../environments/environment';
 
-import { JwtHelperService } from '@auth0/angular-jwt';
+//import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class AuthService {
   tokenURL: string = environment.apiURLBase + environment.getTokenURL;
   clientID: string = environment.clientId;
   clientSecret: string = environment.clientSecret;
-  jwtHelper: JwtHelperService = new JwtHelperService();
+  //jwtHelper: JwtHelperService = new JwtHelperService();
 
   constructor(private http: HttpClient) { }
 
@@ -32,8 +32,8 @@ export class AuthService {
   isAuthenticated(): boolean {
     const token = this.getToken();
     if (token) {
-      const isExpired = this.jwtHelper.isTokenExpired(token);
-      return !isExpired;
+      //const isExpired = this.jwtHelper.isTokenExpired(token);
+      return true;
     }
     return false;
   }
