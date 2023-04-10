@@ -15,7 +15,10 @@ export class TokenInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     console.log("intercept")
     const accessTokenString = localStorage.getItem('access_token');
-    if (accessTokenString) {
+
+    const url = request.url;
+
+    if (accessTokenString && !url.endsWith('/oauth/token')) {
       const accessTokenJSON = JSON.parse(accessTokenString);
       const jwt = accessTokenJSON.access_token;
       request = request.clone({

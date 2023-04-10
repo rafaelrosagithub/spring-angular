@@ -55,4 +55,17 @@ export class AuthService {
     console.log("tryLogin()")
     return this.http.post(this.tokenURL, params.toString(), { headers });
   }
+
+  getAuthenticatedUser() {
+    const token = this.getToken();
+    if (token) {
+      const user = this.jwtHelper.decodeToken(token).user_name;
+      return user;
+    }
+    return null;
+  }
+
+  logOff() {
+    localStorage.removeItem('access_token');
+  }
 }
