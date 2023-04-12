@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class ConvertFileXLS {
 
-    public void createFile(final String nameFile, final List<ClientDTO> clients) throws IOException {
+    public void createFile(final String nameFile, final List<ClientDTO> clients) {
         System.out.println("Generating File: " + nameFile);
 
         try (var workbook = new XSSFWorkbook();
