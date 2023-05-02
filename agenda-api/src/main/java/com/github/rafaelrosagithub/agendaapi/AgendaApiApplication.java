@@ -11,18 +11,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class AgendaApiApplication {
 
-    @Bean
-    public CommandLineRunner commandLineRunner(@Autowired
-                                               ContactRepository repository) {
-        return args -> {
-            Contact contact = new Contact();
-            contact.setName("Debuer 5");
-            contact.setEmail("debuer@hotmail.com");
-            contact.setFavorite(true);
-            repository.save(contact);
-        };
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(AgendaApiApplication.class, args);
     }
