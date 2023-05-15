@@ -23,6 +23,4 @@ public class Contact {
     @Column
     private Boolean favorite;
 
-    @Column
-    private String test;
 }
