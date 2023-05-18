@@ -1,7 +1,13 @@
 <mat-toolbar>Contacts</mat-toolbar>
-<form>
+<form [formGroup]="form" (ngSubmit)="submit()">
     <mat-form-field class="full-width">
         <mat-label>Name:</mat-label>
-        <input matInput placeholder="Type your name"/>
+        <input formControlName="name" matInput placeholder="Type your name"/>
     </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Email:</mat-label>
+        <input formControlName="email" matInput placeholder="Type your email"/>
+    </mat-form-field>
+
+    <button mat-button color="primary">Add</button>
 </form>
