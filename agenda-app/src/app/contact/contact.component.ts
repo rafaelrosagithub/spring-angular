@@ -20,12 +20,12 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', Validators.email]
+      email: ['', [Validators.email, Validators.required]]
     })
   }
 
   submit() {
-    console.log(this.form.value)
+    console.log("submit()")
     // this.service.save(c).subscribe(resp => {
     //   console.log(resp);
     // })
