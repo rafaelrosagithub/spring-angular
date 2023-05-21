@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContactService } from '../contact.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Contact } from './contact';
 
 @Component({
   selector: 'app-contact',
@@ -11,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ContactComponent implements OnInit {
 
   form: FormGroup;
+  contacts: Contact[] = [];
 
   constructor(
     private service: ContactService,
@@ -26,9 +28,12 @@ export class ContactComponent implements OnInit {
 
   submit() {
     console.log("submit()")
-    // this.service.save(c).subscribe(resp => {
-    //   console.log(resp);
-    // })
+    const formValues = this.form.value;
+    const contact: Contact= new Contact(formValues.name, formValues.email);
+    this.service.save(contact).subscribe(resp => {
+      this.contacts.push(resp)
+      console.log(this.contacts)
+    })
   }
 
 }
