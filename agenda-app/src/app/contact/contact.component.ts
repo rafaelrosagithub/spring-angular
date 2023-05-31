@@ -21,9 +21,21 @@ export class ContactComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.mountForm();
+    this.listContacts();
+  }
+
+  mountForm() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]]
+    })
+  }
+
+  listContacts() {
+    this.service.list().subscribe(response => {
+      console.log("contacts", this.contacts)
+      this.contacts = response;
     })
   }
 
