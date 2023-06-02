@@ -34,11 +34,12 @@ public class ContactController {
         return contactRepository.findAll();
     }
 
-    @PatchMapping("{id}/favorite ")
-    public void favorite(@PathVariable Integer id, @RequestBody Boolean favorite) {
+    @PatchMapping("{id}/favorite")
+    public void favorite(@PathVariable Integer id) {
         Optional<Contact> contact = contactRepository.findById(id);
         contact.ifPresent(c -> {
-            c.setFavorite(favorite);
+            boolean favorite = c.getFavorite() == Boolean.TRUE;
+            c.setFavorite(!favorite);
             contactRepository.save(c);
         });
     }
