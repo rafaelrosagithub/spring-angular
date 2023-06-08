@@ -13,14 +13,14 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column
+    @Column(length = 150, nullable = false)
     private String name;
-
-    @Column
+    @Column(length = 150, nullable = false)
     private String email;
-
     @Column
     private Boolean favorite;
+    @Column
+    @Lob
+    private byte[] photo;
 
 }
