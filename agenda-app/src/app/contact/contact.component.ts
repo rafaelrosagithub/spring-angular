@@ -13,7 +13,7 @@ export class ContactComponent implements OnInit {
 
   form: FormGroup;
   contacts: Contact[] = [];
-  columns = ['id', 'name', 'email', 'favorite'];  
+  columns = ['photo', 'id', 'name', 'email', 'favorite'];  
 
   constructor(
     private service: ContactService,
@@ -53,6 +53,18 @@ export class ContactComponent implements OnInit {
       let list: Contact[] = [... this.contacts, resp]
       this.contacts = list;
     })
+  }
+
+  uploadPhoto(event, contact) {
+    const files = event.target.files;
+    if (files) {
+      const photo = files[0];
+      const formData: FormData = new FormData();
+      formData.append("photo", photo);
+      this.service.upload(contact, formData).subscribe( resp => {
+        this.listContacts()
+      });
+    }
   }
 
 }
