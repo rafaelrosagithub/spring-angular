@@ -6,6 +6,7 @@ import { Contact } from './contact';
 import { MatDialog } from '@angular/material/dialog';
 
 import { ContactDetailComponent } from '../contact-detail/contact-detail.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-contact',
@@ -40,11 +41,12 @@ export class ContactComponent implements OnInit {
     })
   }
 
-  listContacts(page, size) {
+  listContacts(page: number = 0, size: number = 0) {
     this.service.list(page, size).subscribe(response => {
       console.log("contacts", this.contacts)
+      console.log("response", response)
       this.contacts = response.content;
-      this.totalElements = response.totalEments;
+      this.totalElements = response.totalElements;
       this.page = response.number;
     })
   }
@@ -83,6 +85,11 @@ export class ContactComponent implements OnInit {
       height: '450px',
       data: contact
     })
+  }
+
+  changePage(event: PageEvent) {
+    this.page = event.pageIndex;
+    this.listContacts(this.page, this.size);
   }
 
 }

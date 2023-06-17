@@ -2,7 +2,7 @@ import { Contact } from "./contact";
 
 export class PageContact {
     content: Contact[];
-    totalEments: number;
+    totalElements: number;
     size: number;
     number: number;
 }
