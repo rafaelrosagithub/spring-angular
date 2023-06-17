@@ -5,12 +5,13 @@ import com.github.rafaelrosagithub.agendaapi.model.repository.ContactRepository;
 import jakarta.servlet.http.Part;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -34,8 +35,10 @@ public class ContactController {
     }
 
     @GetMapping
-    public List<Contact> list() {
-        return contactRepository.findAll();
+    public Page<Contact> list(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                              @RequestParam(value = "size", defaultValue = "10") Integer pageSize) {
+        final PageRequest pageRequest = PageRequest.of(page, pageSize);
+        return contactRepository.findAll(pageRequest);
     }
 
     @PatchMapping("{id}/favorite")
@@ -52,17 +55,17 @@ public class ContactController {
     public byte[] addPhoto(@PathVariable Integer id, @RequestParam("photo") Part file) {
         Optional<Contact> contact = contactRepository.findById(id);
         return contact.map(c -> {
-           try {
-               InputStream inputStream = file.getInputStream();
-               byte[] bytes = new byte[(int) file.getSize()];
-               IOUtils.readFully(inputStream, bytes);
-               c.setPhoto(bytes);
-               contactRepository.save(c);
-               inputStream.close();
-               return bytes;
-           } catch (IOException e) {
-               throw new RuntimeException(e);
-           }
+            try {
+                InputStream inputStream = file.getInputStream();
+                byte[] bytes = new byte[(int) file.getSize()];
+                IOUtils.readFully(inputStream, bytes);
+                c.setPhoto(bytes);
+                contactRepository.save(c);
+                inputStream.close();
+                return bytes;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }).orElse(null);
     }
 }
