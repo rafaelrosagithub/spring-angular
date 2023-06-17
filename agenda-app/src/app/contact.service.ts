@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Contact } from './contact/contact';
@@ -21,8 +21,12 @@ export class ContactService {
     return this.http.post<Contact>(this.url, contact); 
   }
 
-  list(): Observable<Contact[]> {
-    return this.http.get<any>(this.url);
+  list(page, size): Observable<Contact[]> {
+    const params = new HttpParams()
+      .set('page', page)
+      .set('size', size)
+      console.log("params: ", params)
+    return this.http.get<any>(`${this.url}?${params.toString()}`);
   }
 
   favorite(contact: Contact) : Observable<any> {
