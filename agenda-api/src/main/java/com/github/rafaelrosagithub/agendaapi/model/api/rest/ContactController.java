@@ -7,11 +7,13 @@ import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Optional;
 
 @RestController
@@ -37,7 +39,8 @@ public class ContactController {
     @GetMapping
     public Page<Contact> list(@RequestParam(value = "page", defaultValue = "0") Integer page,
                               @RequestParam(value = "size", defaultValue = "10") Integer pageSize) {
-        final PageRequest pageRequest = PageRequest.of(page, pageSize);
+        Sort sort = Sort.by(Sort.Direction.ASC, "name");
+        PageRequest pageRequest = PageRequest.of(page, pageSize, sort);
         return contactRepository.findAll(pageRequest);
     }
 
