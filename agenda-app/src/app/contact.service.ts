@@ -5,6 +5,7 @@ import { Contact } from './contact/contact';
 import { Observable } from 'rxjs';
 
 import { environment } from '../environments/environment';
+import { PageContact } from './contact/pageContact';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class ContactService {
     return this.http.post<Contact>(this.url, contact); 
   }
 
-  list(page, size): Observable<Contact[]> {
+  list(page, size): Observable<PageContact> {
     const params = new HttpParams()
       .set('page', page)
       .set('size', size)

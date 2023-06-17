@@ -17,6 +17,10 @@ export class ContactComponent implements OnInit {
   form: FormGroup;
   contacts: Contact[] = [];
   columns = ['photo', 'id', 'name', 'email', 'favorite'];  
+  totalElements = 0;
+  page = 0;
+  size = 10;
+  pageSizeOptions: number[] = [10];
 
   constructor(
     private service: ContactService,
@@ -26,7 +30,7 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.mountForm();
-    this.listContacts();
+    this.listContacts(this.page, this.size);
   }
 
   mountForm() {
@@ -36,10 +40,12 @@ export class ContactComponent implements OnInit {
     })
   }
 
-  listContacts() {
-    this.service.list().subscribe(response => {
+  listContacts(page, size) {
+    this.service.list(page, size).subscribe(response => {
       console.log("contacts", this.contacts)
-      this.contacts = response;
+      this.contacts = response.content;
+      this.totalElements = response.totalEments;
+      this.page = response.number;
     })
   }
 
