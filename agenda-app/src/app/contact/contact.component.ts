@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { ContactDetailComponent } from '../contact-detail/contact-detail.component';
 import { PageEvent } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-contact',
@@ -26,7 +27,8 @@ export class ContactComponent implements OnInit {
   constructor(
     private service: ContactService,
     private formBuilder: FormBuilder,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +43,7 @@ export class ContactComponent implements OnInit {
     })
   }
 
-  listContacts(page: number = 0, size: number = 0) {
+  listContacts(page: number = 0, size: number = 10) {
     this.service.list(page, size).subscribe(response => {
       console.log("contacts", this.contacts)
       console.log("response", response)
@@ -62,8 +64,11 @@ export class ContactComponent implements OnInit {
     const formValues = this.form.value;
     const contact: Contact= new Contact(formValues.name, formValues.email);
     this.service.save(contact).subscribe(resp => {
-      let list: Contact[] = [... this.contacts, resp]
-      this.contacts = list;
+      this.listContacts();
+      this.snackBar.open("Contact has been added.", "Success!", {
+        duration: 5000
+      });
+      this.form.reset();
     })
   }
 

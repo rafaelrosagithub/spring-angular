@@ -65,14 +65,14 @@
                     <mat-label>Name:</mat-label>
                     <input formControlName="name" matInput placeholder="Type your name"/>
                 </mat-form-field>
-                <div *ngIf="form.controls.name.errors">
+                <div *ngIf="form.controls.name.errors && !form.controls.name.errors.pristine">
                     <div *ngIf="form.controls.name.errors.required">Name field is required</div>
                 </div>
                 <mat-form-field class="full-width">
                     <mat-label>Email:</mat-label>
                     <input formControlName="email" matInput placeholder="Type your email"/>
                 </mat-form-field>
-                <div *ngIf="form.controls.email.errors">
+                <div *ngIf="form.controls.email.errors && !form.controls.email.errors.pristine">
                     <div *ngIf="form.controls.email.errors.required">Required email</div>
                     <div *ngIf="form.controls.email.errors.email">Invalid email</div>
                 </div>
